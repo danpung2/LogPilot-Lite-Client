@@ -1,0 +1,51 @@
+{
+  "name": "logpilot-lite-client",
+  "version": "0.0.3",
+  "description": "LogPilot-Lite gRPC client for LogPilot-Lite gRPC server",
+  "main": "./dist/cjs/src/index.js",
+  "module": "./dist/esm/src/index.mjs",
+  "types": "./dist/types/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/src/index.js",
+      "import": "./dist/esm/src/index.mjs",
+      "types": "./dist/types/src/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm && npm run copy-proto && npm run fix-extensions",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "copy-proto": "cp -r proto dist/cjs/ && cp -r proto dist/esm/",
+    "fix-extensions": "node ../scripts/fix-extensions.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "log",
+    "grpc",
+    "client",
+    "logpilot"
+  ],
+  "homepage": "https://github.com/danpung2/LogPilot-Lite-Client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danpung2/LogPilot-Lite-Client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danpung2/LogPilot-Lite-Client/issues"
+  },
+  "author": "danpung2",
+  "license": "MIT",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.5.2",
+    "@grpc/grpc-js": "^1.13.4",
+    "@grpc/proto-loader": "^0.7.15",
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "^1.13.0",
+    "ts-proto": "^2.7.5",
+    "typescript": "^5.8.3"
+  }
+}
